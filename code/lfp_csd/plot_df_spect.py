@@ -38,7 +38,7 @@ def plot_xarray_2d(X, need_log=False, cmap=None):
     plt.title(X.name)
 
 
-dirpath_data = r'D:\WORK\Salvador\repo\ubiquitous-main\lfp_csd\data'
+dirpath_data = r'D:\WORK\Salvador\repo\ubiq_lfp_csd\processing'
 
 #fpath_in = Path(dirpath_data) / f'lfp_csd_avgtrial_3.nc'
 fpath_in = Path(dirpath_data) / 'lfp_csd_avgtrial_(n=100000_s=2).nc'
@@ -56,7 +56,7 @@ plt.figure(figsize=(12, 10))
 for n, data_type in enumerate(data_types_vis):
     plt.subplot(ny, nx, n * nx + 1)
     W = Xavg[f'{data_type}_pow']
-    W /= W.max(dim='chan')
+    #W /= W.max(dim='chan')
     plot_xarray_2d(W.T, need_log=True)
     plt.subplot(ny, nx, n * nx + 2)
     Z = xr.apply_ufunc(np.angle, Xavg[f'{data_type}_complex'])
